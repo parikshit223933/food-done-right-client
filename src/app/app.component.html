@@ -1,3 +1,19 @@
-<div class='custom-container'>
-  hola
+<div class='app-component-container'>
+  <div class='heading mat-h1'>
+    Food done right
+  </div>
+  <mat-divider></mat-divider>
+  <div class='query-container'>
+    <form class='query-form'>
+      <mat-form-field class='example-full-width'>
+        <mat-label>Address</mat-label>
+        <input type='text' matInput [formControl]='queryFormControl'
+               placeholder='Enter your location/address'>
+        <mat-hint *ngIf='status'>Status: {{status}}</mat-hint>
+      </mat-form-field>
+      <div class='message-container' *ngIf='nearestPinMessage'>
+        {{nearestPinMessage}}
+      </div>
+    </form>
+  </div>
 </div>

@@ -1,8 +1,20 @@
-.custom-container {
-  height: 100vh;
-  width: 100vw;
+.app-component-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  padding-top: 30px;
+
+  .query-container {
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    .query-form {
+      .message-container {
+        margin: 20px 0;
+      }
+    }
+  }
 }
