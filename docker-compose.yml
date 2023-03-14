@@ -8,7 +8,7 @@ networks:
 services:
   fdr-frontend:
     build: .
-    command: 'npm run start'
+    command: 'node_modules/@angular/cli/bin/ng.js serve --host=0.0.0.0'
     stdin_open: true
     tty: true
     ports:
