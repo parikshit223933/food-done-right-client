@@ -1,0 +1,8 @@
+version: "2"
+options:
+  verbose: true
+syncs:
+  food-done-right-client-sync:
+    src: '.'
+    sync_strategy: 'native_osx'
+    sync_excludes: [ '.git', '*.log', '.idea' ]

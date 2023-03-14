@@ -1,0 +1,22 @@
+version: '3'
+
+networks:
+  default:
+    external:
+      name: food_network
+
+services:
+  fdr-frontend:
+    build: .
+    command: 'npm run start'
+    stdin_open: true
+    tty: true
+    ports:
+      - "4200:4200"
+    volumes:
+      - food-done-right-client-sync:/food-done-right-client:nocopy
+    container_name: food-done-right-client
+
+volumes:
+  food-done-right-client-sync:
+    external: true
