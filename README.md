@@ -27,3 +27,5 @@
     ```
     docker-compose up
     ```
+
+- Server will start on `localhost:4200`
