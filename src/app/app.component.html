@@ -10,6 +10,7 @@
         <input type='text' matInput [formControl]='queryFormControl'
                placeholder='Enter your location/address'>
         <mat-hint *ngIf='status'>Status: {{status}}</mat-hint>
+        <mat-error *ngIf='queryFormControl.invalid'>Please enter 4 or more characters</mat-error>
       </mat-form-field>
     </form>
   </div>
