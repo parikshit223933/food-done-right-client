@@ -59,7 +59,7 @@ export class AppComponent implements OnInit {
         if (locationDetails.data.success) {
           if (locationDetails.data.coveredByPolygon) {
             if (locationDetails.data.deliverablePointInPolygon) {
-              this.nearestPinMessage = `Your nearest outlet identifier is ${locationDetails.data.deliverablePointInPolygon.properties.Name} which falls inside the polygon ${locationDetails.data.coveringPolygon?.properties?.Name}`;
+              this.nearestPinMessage = `Your nearest outlet is <b>${locationDetails.data.deliverablePointInPolygon.properties.Name}</b> which falls inside the polygon with identifier <b>${locationDetails.data.coveringPolygon?.properties?.Name}</b>`;
             } else {
               this.nearestPinMessage =
                 'Your location does fall in one of the pre-defined polygons but it does not have an outlet identifier';

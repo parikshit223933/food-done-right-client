@@ -13,7 +13,6 @@
       </mat-form-field>
     </form>
   </div>
-  <div class='message-container' *ngIf='nearestPinMessage'>
-    {{nearestPinMessage}}
+  <div class='message-container' *ngIf='nearestPinMessage' [innerHTML]='nearestPinMessage'>
   </div>
 </div>

@@ -1,8 +1,8 @@
 .app-component-container {
+  padding: 30px 20px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 30px;
 
   .query-container {
     margin-top: 50px;
@@ -11,6 +11,5 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
   }
 }
