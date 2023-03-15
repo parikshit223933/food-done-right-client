@@ -15,7 +15,7 @@ import { debounceTime, filter, of, switchMap } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
-  nearestPinMessage = null;
+  nearestPinMessage: string | null = null;
   queryFormControl = new FormControl('', [Validators.minLength(3)]);
   status: string | null = null;
 
@@ -25,12 +25,17 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.subscribeToFormFieldChanges();
+  }
+
+  subscribeToFormFieldChanges() {
     this.queryFormControl.valueChanges
       .pipe(
         filter((_val) => {
+          this.nearestPinMessage = null;
+          this.status = null;
+          this.cdr.markForCheck();
           if (this.queryFormControl.invalid) {
-            this.status = null;
-            this.cdr.markForCheck();
           }
           return this.queryFormControl.valid;
         }),
@@ -51,7 +56,21 @@ export class AppComponent implements OnInit {
       )
       .subscribe((locationDetails) => {
         this.status = null;
-        console.log(locationDetails.data.success);
+        if (locationDetails.data.success) {
+          if (locationDetails.data.coveredByPolygon) {
+            if (locationDetails.data.deliverablePointInPolygon) {
+              this.nearestPinMessage = `Your nearest outlet identifier is ${locationDetails.data.deliverablePointInPolygon.properties.Name} which falls inside the polygon ${locationDetails.data.coveringPolygon?.properties?.Name}`;
+            } else {
+              this.nearestPinMessage =
+                'Your location does fall in one of the pre-defined polygons but it does not have an outlet identifier';
+            }
+          } else {
+            this.nearestPinMessage =
+              'Your location did not fall in any of the pre-defined polygons';
+          }
+        } else {
+          this.nearestPinMessage = `Your nearest outlet identifier cannot be determined. ${locationDetails.data.error}`;
+        }
         this.cdr.markForCheck();
       });
   }

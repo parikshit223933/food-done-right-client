@@ -11,9 +11,9 @@
                placeholder='Enter your location/address'>
         <mat-hint *ngIf='status'>Status: {{status}}</mat-hint>
       </mat-form-field>
-      <div class='message-container' *ngIf='nearestPinMessage'>
-        {{nearestPinMessage}}
-      </div>
     </form>
+    <div class='message-container' *ngIf='nearestPinMessage'>
+      {{nearestPinMessage}}
+    </div>
   </div>
 </div>
