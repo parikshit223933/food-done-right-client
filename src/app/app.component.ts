@@ -28,7 +28,6 @@ export class AppComponent implements OnInit {
     this.queryFormControl.valueChanges
       .pipe(
         filter((_val) => {
-          console.log(_val);
           if (this.queryFormControl.invalid) {
             this.status = null;
             this.cdr.markForCheck();
@@ -44,13 +43,15 @@ export class AppComponent implements OnInit {
       )
       .pipe(
         switchMap((val: string) => {
+          console.log(val);
           this.status = 'Fetching nearest store';
           this.cdr.markForCheck();
           return this.locationFetcherService.getLocationForQuery(val);
         })
       )
       .subscribe((locationDetails) => {
-        console.log(locationDetails.data);
+        this.status = null;
+        console.log(locationDetails.data.success);
         this.cdr.markForCheck();
       });
   }
